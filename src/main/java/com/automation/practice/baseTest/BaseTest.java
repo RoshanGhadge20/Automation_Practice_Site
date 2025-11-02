@@ -1,5 +1,7 @@
 package com.automation.practice.baseTest;
 
+import com.automation.practice.configurations.browserConfigurations;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,20 +11,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.automation.practice.configurations.browserConfigurations;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.managers.FirefoxDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
 
-    Properties prop;
-    WebDriver driver;
+    public Properties prop;
+    public WebDriver driver;
 
+    @BeforeTest
     public void Initialize_Driver() throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(
                 "src\\main\\java\\com\\automation\\practice\\properties\\browserProperties.properties");
+        prop = new Properties();
         prop.load(fis);
+
         String browser_name = (String) prop.get("Browser");
         String testURL = (String) prop.get("URL");
         try {
@@ -44,6 +50,7 @@ public class BaseTest {
         }
     }
 
+    @AfterTest
     public void deactivate_driver() {
         try {
             if (driver != null) {
