@@ -38,4 +38,9 @@ public class landingpageTest extends BaseTest {
         }
     }
 
+    @Test(priority = 3)
+    public void verify_gui_section() {
+        lp.gui_section();
+    }
+
 }
