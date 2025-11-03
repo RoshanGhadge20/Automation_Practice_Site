@@ -40,7 +40,11 @@ public class landingpageTest extends BaseTest {
 
     @Test(priority = 3)
     public void verify_gui_section() {
-        lp.gui_section();
+        List<String> actual_dropdown_options = lp.gui_section();
+        List<String> expected_dropdown_options = Arrays.asList("United States", "Canada", "United Kingdom", "Germany",
+                "France", "Australia", "Japan", "China", "Brazil", "India");
+        Assert.assertEquals(actual_dropdown_options, expected_dropdown_options,
+                "Dropdown Options does not match correctly");
     }
 
 }

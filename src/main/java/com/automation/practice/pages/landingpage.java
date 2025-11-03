@@ -1,5 +1,7 @@
 package com.automation.practice.pages;
 
+import com.automation.practice.utilities.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,8 +13,10 @@ import org.openqa.selenium.support.PageFactory;
 public class landingpage {
 
     WebDriver driver;
+    DropdownElements drpElement;
 
     public landingpage(WebDriver driver) {
+        drpElement = new DropdownElements();
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -42,6 +46,15 @@ public class landingpage {
     @FindBy(xpath = "//div[@class='form-group']/div/input[@id='male']")
     private WebElement genderField;
 
+    @FindBy(xpath = "//input[@id='sunday']")
+    private WebElement sundayField;
+
+    @FindBy(xpath = "//input[contains(@id,'monday')]")
+    private WebElement mondayField;
+
+    @FindBy(css = "select#country")
+    private WebElement dropdownField;
+
     // Action Methods for landing page
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -53,11 +66,21 @@ public class landingpage {
         return header_options;
     }
 
-    public void gui_section() {
+    public List<String> gui_section() {
+        // working with textfields
         nameField.sendKeys("Roshan");
         emailField.sendKeys("roshanghadge20@gmail.com");
         phoneField.sendKeys("8767003565");
+        // working with textareas
         addressField.sendKeys("Sample Text is adding it into the textarea for testing purpose");
+        // working with toggle buttons
         genderField.click();
+        // Clicking on two checkboxs
+        sundayField.click();
+        mondayField.click();
+        // working with select dropdown options
+        List<String> dropdown_options = drpElement.fetchOptionsFromDropdown(dropdownField);
+
+        return dropdown_options;
     }
 }
