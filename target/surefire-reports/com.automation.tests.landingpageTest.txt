@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.automation.tests.landingpageTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.443 s - in com.automation.tests.landingpageTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.464 s - in com.automation.tests.landingpageTest

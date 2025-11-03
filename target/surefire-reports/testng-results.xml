@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-02T12:46:52 IST" name="Surefire suite" finished-at="2025-11-02T12:47:00 IST" duration-ms="7920">
+  <suite started-at="2025-11-03T15:13:57 IST" name="Surefire suite" finished-at="2025-11-03T15:14:23 IST" duration-ms="25526">
     <groups>
     </groups>
-    <test started-at="2025-11-02T12:46:52 IST" name="Surefire test" finished-at="2025-11-02T12:47:00 IST" duration-ms="7920">
+    <test started-at="2025-11-03T15:13:57 IST" name="Surefire test" finished-at="2025-11-03T15:14:23 IST" duration-ms="25526">
       <class name="com.automation.tests.landingpageTest">
-        <test-method is-config="true" signature="Initialize_Driver()[pri:0, instance:com.automation.tests.landingpageTest@460d0a57]" started-at="2025-11-02T12:46:52 IST" name="Initialize_Driver" finished-at="2025-11-02T12:46:59 IST" duration-ms="7542" status="PASS">
+        <test-method is-config="true" signature="Initialize_Driver()[pri:0, instance:com.automation.tests.landingpageTest@47d90b9e]" started-at="2025-11-03T15:13:57 IST" name="Initialize_Driver" finished-at="2025-11-03T15:14:22 IST" duration-ms="25076" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Initialize_Driver -->
-        <test-method is-config="true" signature="setuppage()[pri:0, instance:com.automation.tests.landingpageTest@460d0a57]" started-at="2025-11-02T12:46:59 IST" name="setuppage" finished-at="2025-11-02T12:46:59 IST" duration-ms="26" status="PASS">
+        <test-method is-config="true" signature="setuppage()[pri:0, instance:com.automation.tests.landingpageTest@47d90b9e]" started-at="2025-11-03T15:14:22 IST" name="setuppage" finished-at="2025-11-03T15:14:22 IST" duration-ms="35" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setuppage -->
-        <test-method signature="verify_page_title()[pri:1, instance:com.automation.tests.landingpageTest@460d0a57]" started-at="2025-11-02T12:46:59 IST" name="verify_page_title" finished-at="2025-11-02T12:46:59 IST" duration-ms="46" status="PASS">
+        <test-method signature="verify_widget_header()[pri:2, instance:com.automation.tests.landingpageTest@47d90b9e]" started-at="2025-11-03T15:14:22 IST" name="verify_widget_header" finished-at="2025-11-03T15:14:22 IST" duration-ms="107" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verify_page_title -->
-        <test-method is-config="true" signature="deactivate_driver()[pri:0, instance:com.automation.tests.landingpageTest@460d0a57]" started-at="2025-11-02T12:46:59 IST" name="deactivate_driver" finished-at="2025-11-02T12:47:00 IST" duration-ms="252" status="PASS">
+        </test-method> <!-- verify_widget_header -->
+        <test-method is-config="true" signature="deactivate_driver()[pri:0, instance:com.automation.tests.landingpageTest@47d90b9e]" started-at="2025-11-03T15:14:22 IST" name="deactivate_driver" finished-at="2025-11-03T15:14:23 IST" duration-ms="248" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deactivate_driver -->
