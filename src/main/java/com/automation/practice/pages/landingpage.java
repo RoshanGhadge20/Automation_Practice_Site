@@ -80,7 +80,7 @@ public class landingpage {
         mondayField.click();
         // working with select dropdown options
         List<String> dropdown_options = drpElement.fetchOptionsFromDropdown(dropdownField);
-
+        drpElement.selectByDropdownVisibleText(dropdownField, "India");
         return dropdown_options;
     }
 }
