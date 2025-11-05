@@ -58,6 +58,8 @@ public class landingpage {
     @FindBy(css = "select#colors")
     private WebElement colorDropDownField;
 
+    @FindBy()
+
     // Action Methods for landing page
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -89,5 +91,6 @@ public class landingpage {
         drpElement.selectMultipleValues(colorDropDownField, "Red", "Green");
 
         return dropdown_options;
+
     }
 }
