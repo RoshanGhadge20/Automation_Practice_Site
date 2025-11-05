@@ -5,8 +5,9 @@
     <classes>
       <class name="com.automation.tests.landingpageTest">
         <methods>
-          <include name="verify_page_title"/>
+          <include name="setuppage"/>
           <include name="deactivate_driver"/>
+          <include name="verify_gui_section"/>
           <include name="Initialize_Driver"/>
         </methods>
       </class> <!-- com.automation.tests.landingpageTest -->

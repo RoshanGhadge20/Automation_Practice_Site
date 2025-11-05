@@ -1,7 +1,5 @@
 package com.automation.practice.pages;
 
-import com.automation.practice.utilities.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import com.automation.practice.utilities.DropdownElements;
 
 public class landingpage {
 
@@ -55,6 +55,9 @@ public class landingpage {
     @FindBy(css = "select#country")
     private WebElement dropdownField;
 
+    @FindBy(css = "select#colors")
+    private WebElement colorDropDownField;
+
     // Action Methods for landing page
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -81,6 +84,10 @@ public class landingpage {
         // working with select dropdown options
         List<String> dropdown_options = drpElement.fetchOptionsFromDropdown(dropdownField);
         drpElement.selectByDropdownVisibleText(dropdownField, "India");
+
+        // Working with color dropdown field
+        drpElement.selectMultipleValues(colorDropDownField, "Red", "Green");
+
         return dropdown_options;
     }
 }

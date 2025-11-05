@@ -43,4 +43,16 @@ public class DropdownElements {
         sc = new Select(dropdownfield);
         sc.selectByContainsVisibleText(VisibleText);
     }
+
+    // Public method to select the multiple values from dropdown
+    public void selectMultipleValues(WebElement dropdownfield, String color1, String color2) {
+        sc = new Select(dropdownfield);
+        boolean value = sc.isMultiple();
+        if (value) {
+            sc.selectByVisibleText(color1);
+            sc.selectByVisibleText(color2);
+        } else {
+            System.out.println("Dropdown is not multiselect");
+        }
+    }
 }
