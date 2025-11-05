@@ -46,7 +46,6 @@ public class landingpageTest extends BaseTest {
         Assert.assertEquals(actual_dropdown_options, expected_dropdown_options,
                 "Dropdown Options does not match correctly");
 
-        Thread.sleep(3000);
     }
 
 }

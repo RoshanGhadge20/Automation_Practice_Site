@@ -1,12 +1,16 @@
 package com.automation.practice.pages;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import com.automation.practice.utilities.DropdownElements;
 
@@ -14,11 +18,13 @@ public class landingpage {
 
     WebDriver driver;
     DropdownElements drpElement;
+    JavascriptExecutor js;
 
     public landingpage(WebDriver driver) {
-        drpElement = new DropdownElements();
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        drpElement = new DropdownElements();
+        js = (JavascriptExecutor) driver;
     }
 
     // Object Pool for storing all webelements of landing page
@@ -58,7 +64,17 @@ public class landingpage {
     @FindBy(css = "select#colors")
     private WebElement colorDropDownField;
 
-    @FindBy()
+    @FindBy(css = "select.form-control[id='animals']")
+    private WebElement sortedsListSectionField;
+
+    @FindBy(css = "select.form-control[id='animals'] option")
+    private List<WebElement> sortedListField;
+
+    @FindBy(xpath = "//input[@id='datepicker']")
+    private WebElement datepicker1Field;
+
+    @FindBy(css = "input#txtDate")
+    private WebElement datepicker2Field;
 
     // Action Methods for landing page
     public String verify_title() {
@@ -89,6 +105,19 @@ public class landingpage {
 
         // Working with color dropdown field
         drpElement.selectMultipleValues(colorDropDownField, "Red", "Green");
+
+        // working with sorted list element
+        List<String> actualList = sortedListField.stream().map(WebElement::getText).collect(Collectors.toList());
+        List<String> expectedSortedList = new ArrayList<>(actualList);
+        Collections.sort(expectedSortedList);
+        Assert.assertEquals(actualList, expectedSortedList, "List are not sorted");
+
+        // Working with datepicker1 > it contains input tag so we can directly use
+        // .sendkeys method
+        datepicker1Field.sendKeys("01/01/2025");
+
+        // Working with datepicker2 > with the help of javascriptexecutor
+        js.executeScript("arguments[0].value='01/01/2025';", datepicker2Field);
 
         return dropdown_options;
 
