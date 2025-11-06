@@ -13,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import com.automation.practice.utilities.DropdownElements;
+import com.automation.practice.utilities.WindowHandleControl;
 import com.automation.practice.utilities.WorkingwithCalenderControls;
 
 public class landingpage {
@@ -20,6 +21,7 @@ public class landingpage {
     WebDriver driver;
     DropdownElements drpElement;
     WorkingwithCalenderControls calenderControls;
+    WindowHandleControl windowHandles;
     JavascriptExecutor js;
 
     public landingpage(WebDriver driver) {
@@ -27,10 +29,11 @@ public class landingpage {
         PageFactory.initElements(driver, this);
         drpElement = new DropdownElements();
         calenderControls = new WorkingwithCalenderControls();
+        windowHandles = new WindowHandleControl();
         js = (JavascriptExecutor) driver;
     }
 
-    // Object Pool for storing all webelements of landing page
+    /*---- Object Pool for storing all webelements of landing page ----*/
 
     // Header Section
     @FindBy(xpath = "//h1[@class='title']")
@@ -85,7 +88,14 @@ public class landingpage {
     @FindBy(css = "input#end-date")
     private WebElement datepicker3EndDateField;
 
-    // Action Methods for landing page
+    // Home Section
+    @FindBy(css = "div#blog-pager a")
+    private WebElement homeSectionField;
+
+    @FindBy(css = "div.feed-links a")
+    private WebElement subscribeToField;
+
+    /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
         return paget_title;
@@ -125,9 +135,7 @@ public class landingpage {
         Collections.sort(expectedSortedList);
         Assert.assertEquals(actualList, expectedSortedList, "List are not sorted");
 
-        // Working with datepicker1 > it contains input tag so we can directly use
-        // .sendkeys method
-        // datepicker1Field.sendKeys("01/01/2025");
+        // Working with datepicker1 > From calender icon
         calenderControls.selectDateFromCalender(driver, datepicker1Field, "26", "November", "2026");
 
         // Working with datepicker2 > with the help of javascriptexecutor
@@ -138,6 +146,15 @@ public class landingpage {
         datepicker3EndDateField.sendKeys("10/10/2025");
 
         return dropdown_options;
+    }
 
+    public void homeSection() {
+        // Clicking on home section
+        homeSectionField.click();
+
+        // Subscribe to section
+        String parentWindow = windowHandles.getParentWindow(driver);
+        subscribeToField.click();
+        driver.switchTo().window(parentWindow);
     }
 }

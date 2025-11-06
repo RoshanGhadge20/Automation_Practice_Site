@@ -45,7 +45,12 @@ public class landingpageTest extends BaseTest {
                 "France", "Australia", "Japan", "China", "Brazil", "India");
         Assert.assertEquals(actual_dropdown_options, expected_dropdown_options,
                 "Dropdown Options does not match correctly");
-        Thread.sleep(3000);
+        System.out.println("Test Executed Completely for GUI Section");
     }
 
+    @Test(priority = 4)
+    public void verify_homeSection() throws InterruptedException {
+        lp.homeSection();
+        Thread.sleep(3000);
+    }
 }
