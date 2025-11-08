@@ -53,4 +53,10 @@ public class landingpageTest extends BaseTest {
         lp.homeSection();
         Thread.sleep(3000);
     }
+
+    @Test(priority = 5)
+    public void verify_uploadFileSection() throws InterruptedException {
+        lp.uploadFilesSection();
+        Thread.sleep(3000);
+    }
 }

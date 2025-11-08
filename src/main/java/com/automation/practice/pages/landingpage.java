@@ -95,6 +95,19 @@ public class landingpage {
     @FindBy(css = "div.feed-links a")
     private WebElement subscribeToField;
 
+    // Upload Files Sections
+    @FindBy(css = "#singleFileInput")
+    WebElement uploadSingleFileField;
+
+    @FindBy(css = "form#singleFileForm button")
+    WebElement uploadSingleFileButtonField;
+
+    @FindBy(css = "form#multipleFilesForm input")
+    WebElement uploadMultipleFileField;
+
+    @FindBy(css = "form#multipleFilesForm button")
+    WebElement uploadMultipleFileButtonField;
+
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -156,5 +169,25 @@ public class landingpage {
         String parentWindow = windowHandles.getParentWindow(driver);
         subscribeToField.click();
         driver.switchTo().window(parentWindow);
+    }
+
+    public void uploadFilesSection() throws InterruptedException {
+        // Working with the file uploads
+        if (uploadSingleFileField.isEnabled()) {
+
+            uploadSingleFileField.sendKeys(
+                    "E:\\Automation Testing Practice\\automationtet\\src\\test\\java\\com\\automation\\resources\\TestData\\SampleTest.pdf");
+            uploadSingleFileButtonField.click();
+            Thread.sleep(3000);
+        }
+
+        if (uploadMultipleFileField.isEnabled()) {
+            uploadMultipleFileField.sendKeys(
+                    "E:\\Automation Testing Practice\\automationtet\\src\\test\\java\\com\\automation\\resources\\TestData\\SampleTest.pdf\n"
+                            + "E:\\Automation Testing Practice\\automationtet\\src\\test\\java\\com\\automation\\resources\\TestData\\SampleTest.pdf");
+            uploadSingleFileButtonField.click();
+            Thread.sleep(3000);
+        }
+
     }
 }
