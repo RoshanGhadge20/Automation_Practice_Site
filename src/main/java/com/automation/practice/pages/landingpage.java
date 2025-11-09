@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -108,6 +109,16 @@ public class landingpage {
     @FindBy(css = "form#multipleFilesForm button")
     WebElement uploadMultipleFileButtonField;
 
+    // Static Web Table
+    @FindBy(xpath = "//table[@name='BookTable']/tbody/tr/th")
+    List<WebElement> staticTableHeadingField;
+
+    @FindBy(xpath = "//table[@name='BookTable']/tbody/tr")
+    List<WebElement> staticTableHeadingRowField;
+
+    @FindBy(xpath = "//table[@name='BookTable']/tbody/tr/td")
+    List<WebElement> staticTableDataField;
+
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -187,6 +198,24 @@ public class landingpage {
                             + "E:\\Automation Testing Practice\\automationtet\\src\\test\\java\\com\\automation\\resources\\TestData\\SampleTest.pdf");
             uploadSingleFileButtonField.click();
             Thread.sleep(3000);
+        }
+    }
+
+    public void staticTableSection() throws InterruptedException {
+        // Firstly Iterate through the table to fetch all the values from it
+        for (WebElement we : staticTableHeadingField) {
+            System.out.print(we.getText() + "\t");
+        }
+        System.out.println();
+
+        for (int i = 2; i < staticTableHeadingRowField.size(); i++) {
+
+            List<WebElement> rowCells = driver.findElements(
+                    By.xpath("//table[@name='BookTable']/tbody/tr[" + i + "]/td"));
+            for (WebElement cell : rowCells) {
+                System.out.print(cell.getText() + "\t");
+            }
+            System.out.println();
         }
 
     }

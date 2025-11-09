@@ -59,4 +59,9 @@ public class landingpageTest extends BaseTest {
         lp.uploadFilesSection();
         Thread.sleep(3000);
     }
+
+    @Test(priority = 6)
+    public void verify_staticTableSection() throws InterruptedException {
+        lp.staticTableSection();
+    }
 }
