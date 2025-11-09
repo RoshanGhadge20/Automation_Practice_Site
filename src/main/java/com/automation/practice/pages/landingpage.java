@@ -116,9 +116,6 @@ public class landingpage {
     @FindBy(xpath = "//table[@name='BookTable']/tbody/tr")
     List<WebElement> staticTableHeadingRowField;
 
-    @FindBy(xpath = "//table[@name='BookTable']/tbody/tr/td")
-    List<WebElement> staticTableDataField;
-
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -201,7 +198,7 @@ public class landingpage {
         }
     }
 
-    public void staticTableSection() throws InterruptedException {
+    public void staticTableSection() {
         // Firstly Iterate through the table to fetch all the values from it
         for (WebElement we : staticTableHeadingField) {
             System.out.print(we.getText() + "\t");
