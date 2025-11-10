@@ -116,6 +116,13 @@ public class landingpage {
     @FindBy(xpath = "//table[@name='BookTable']/tbody/tr")
     List<WebElement> staticTableHeadingRowField;
 
+    // Dynamic Web Table
+    @FindBy(xpath = "//table[@id='taskTable']/thead/tr/th")
+    List<WebElement> dynamicTableHeadingField;
+
+    @FindBy(xpath = "//tbody[@id='rows']/tr")
+    List<WebElement> dynamicTableHeadingRowField;
+
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -211,6 +218,21 @@ public class landingpage {
                     By.xpath("//table[@name='BookTable']/tbody/tr[" + i + "]/td"));
             for (WebElement cell : rowCells) {
                 System.out.print(cell.getText() + "\t");
+            }
+            System.out.println();
+        }
+    }
+
+    public void dynamicTableSection() {
+        for (WebElement webelement : dynamicTableHeadingField) {
+            System.out.print(webelement.getText() + "\t");
+        }
+        System.out.println();
+
+        for (int i = 2; i < dynamicTableHeadingRowField.size(); i++) {
+            List<WebElement> celldata = driver.findElements(By.xpath("//tbody[@id='rows']/tr[" + i + "]/td"));
+            for (WebElement element : celldata) {
+                System.out.print(element.getText() + "\t");
             }
             System.out.println();
         }

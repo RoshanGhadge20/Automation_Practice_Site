@@ -64,4 +64,9 @@ public class landingpageTest extends BaseTest {
     public void verify_staticTableSection() throws InterruptedException {
         lp.staticTableSection();
     }
+
+    @Test(priority = 7)
+    public void verify_dynamicTableSection() {
+        lp.dynamicTableSection();
+    }
 }
