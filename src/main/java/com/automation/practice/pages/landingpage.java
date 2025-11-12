@@ -273,7 +273,7 @@ public class landingpage {
             List<WebElement> rows = driver.findElements(By.xpath("//table[@id='productTable']/tbody/tr"));
             for (int j = 1; j <= rows.size(); j++) {
                 List<WebElement> cells = driver
-                        .findElements(By.xpath("//table[@id='productTable']/tbody/tr[" + i + "]/td"));
+                        .findElements(By.xpath("//table[@id='productTable']/tbody/tr[" + j + "]/td"));
                 for (WebElement cell : cells) {
                     System.out.print(cell.getText() + "\t");
                 }
