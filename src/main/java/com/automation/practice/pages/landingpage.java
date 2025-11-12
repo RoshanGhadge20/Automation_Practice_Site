@@ -276,11 +276,17 @@ public class landingpage {
                         .findElements(By.xpath("//table[@id='productTable']/tbody/tr[" + j + "]/td"));
                 for (WebElement cell : cells) {
                     System.out.print(cell.getText() + "\t");
+                    // WebElement data = driver
+                    // .findElement(By.xpath("//table[@id='productTable']/tbody/tr[" + j +
+                    // "]/td[2]"));
+                    // if ((data.getText()).equalsIgnoreCase("Soundbar")) {
+                    // System.out.println("---- Match Found ---");
+                    // }
+
                 }
                 System.out.println();
             }
             System.out.println(" ------  End of Page ------ ");
-
         }
 
     }
