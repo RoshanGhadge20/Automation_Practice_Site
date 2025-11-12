@@ -123,6 +123,19 @@ public class landingpage {
     @FindBy(xpath = "//tbody[@id='rows']/tr")
     List<WebElement> dynamicTableHeadingRowField;
 
+    // Pagination Web Table
+    @FindBy(xpath = "//ul[@id='pagination']/li")
+    List<WebElement> paginationNumberField;
+
+    @FindBy(xpath = "//table[@id='productTable']/thead/tr/th")
+    List<WebElement> tableHeadingRowField;
+
+    @FindBy(xpath = "//table[@id='productTable']/tbody/tr")
+    List<WebElement> tableRowField;
+
+    @FindBy(xpath = "//table[@id='productTable']/tbody/tr/td")
+    List<WebElement> tableCellField;
+
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -224,17 +237,50 @@ public class landingpage {
     }
 
     public void dynamicTableSection() {
-        for (WebElement webelement : dynamicTableHeadingField) {
-            System.out.print(webelement.getText() + "\t");
+
+        // Printing all the values from dynamic of table
+        /*
+         * for (WebElement webelement : dynamicTableHeadingField) {
+         * System.out.print(webelement.getText() + "\t");
+         * }
+         * System.out.println();
+         * 
+         * for (int i = 2; i < dynamicTableHeadingRowField.size(); i++) {
+         * List<WebElement> celldata =
+         * driver.findElements(By.xpath("//tbody[@id='rows']/tr[" + i + "]/td"));
+         * for (WebElement element : celldata) {
+         * System.out.print(element.getText() + "\t");
+         * }
+         * System.out.println();
+         * }
+         */
+    }
+
+    public void paginationWebTable() throws InterruptedException {
+        // working with web table
+
+        for (WebElement we : tableHeadingRowField) {
+            System.out.print(we.getText() + "\t");
         }
         System.out.println();
 
-        for (int i = 2; i < dynamicTableHeadingRowField.size(); i++) {
-            List<WebElement> celldata = driver.findElements(By.xpath("//tbody[@id='rows']/tr[" + i + "]/td"));
-            for (WebElement element : celldata) {
-                System.out.print(element.getText() + "\t");
+        int paginationNumber = paginationNumberField.size();
+        for (int i = 1; i <= paginationNumber; i++) {
+            WebElement page = driver.findElement(By.xpath("//ul[@id='pagination']/li[" + i + "]"));
+            page.click();
+            Thread.sleep(1000);
+
+            List<WebElement> rows = driver.findElements(By.xpath("//table[@id='productTable']/tbody/tr"));
+            for (int j = 1; j <= rows.size(); j++) {
+                List<WebElement> cells = driver
+                        .findElements(By.xpath("//table[@id='productTable']/tbody/tr[" + i + "]/td"));
+                for (WebElement cell : cells) {
+                    System.out.print(cell.getText() + "\t");
+                }
+                System.out.println();
             }
-            System.out.println();
+            System.out.println(" ------  End of Page ------ ");
+
         }
 
     }
