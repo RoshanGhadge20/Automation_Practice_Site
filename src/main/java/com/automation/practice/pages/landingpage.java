@@ -136,6 +136,25 @@ public class landingpage {
     @FindBy(xpath = "//table[@id='productTable']/tbody/tr/td")
     List<WebElement> tableCellField;
 
+    // Form Section
+    @FindBy(css = "input#input1")
+    WebElement section1InputField;
+
+    @FindBy(css = "button#btn1")
+    WebElement submit1ButtonField;
+
+    @FindBy(css = "input#input2")
+    WebElement section2InputField;
+
+    @FindBy(css = "button#btn2")
+    WebElement submit2ButtonField;
+
+    @FindBy(css = "input#input3")
+    WebElement section3InputField;
+
+    @FindBy(css = "button#btn3")
+    WebElement submit3ButtonField;
+
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -287,6 +306,23 @@ public class landingpage {
                 System.out.println();
             }
             System.out.println(" ------  End of Page ------ ");
+        }
+    }
+
+    public void formSection() {
+        if (section1InputField.isEnabled()) {
+            section1InputField.sendKeys("Roshan Ghadge");
+            submit1ButtonField.click();
+        }
+
+        if (section2InputField.isEnabled()) {
+            section2InputField.sendKeys("Roshan Ghadge Roshan Ghadge");
+            submit2ButtonField.click();
+        }
+
+        if (section3InputField.isEnabled()) {
+            section3InputField.sendKeys("Roshan Ghadge Roshan Ghadge Roshan Ghadge ");
+            submit3ButtonField.click();
         }
 
     }

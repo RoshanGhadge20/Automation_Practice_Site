@@ -74,4 +74,9 @@ public class landingpageTest extends BaseTest {
     public void verify_paginationWebTable() throws InterruptedException {
         lp.paginationWebTable();
     }
+
+    @Test(priority = 9)
+    public void verify_formSection() {
+        lp.formSection();
+    }
 }
