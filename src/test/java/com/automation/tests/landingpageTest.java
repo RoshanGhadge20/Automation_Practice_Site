@@ -79,4 +79,9 @@ public class landingpageTest extends BaseTest {
     public void verify_formSection() {
         lp.formSection();
     }
+
+    @Test(priority = 10)
+    public void verify_footerSectionLinks() {
+        lp.footerSectionLinks();
+    }
 }

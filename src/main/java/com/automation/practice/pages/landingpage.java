@@ -155,6 +155,10 @@ public class landingpage {
     @FindBy(css = "button#btn3")
     WebElement submit3ButtonField;
 
+    // Footer Section Links
+    @FindBy(css = "div#PageList1 div ul li a")
+    List<WebElement> footerSectionLinksField;
+
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -324,6 +328,15 @@ public class landingpage {
             section3InputField.sendKeys("Roshan Ghadge Roshan Ghadge Roshan Ghadge ");
             submit3ButtonField.click();
         }
+    }
 
+    public void footerSectionLinks() {
+
+        System.out.println("Total Number of links in footer section are :- " + footerSectionLinksField.size());
+
+        for (int i = 0; i < footerSectionLinksField.size(); i++) {
+            String URL = footerSectionLinksField.get(i).getAttribute("href");
+            System.out.println("URL" + i + URL);
+        }
     }
 }
