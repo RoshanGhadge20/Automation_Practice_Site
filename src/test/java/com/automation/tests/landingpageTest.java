@@ -68,6 +68,7 @@ public class landingpageTest extends BaseTest {
     @Test(priority = 7)
     public void verify_dynamicTableSection() {
         lp.dynamicTableSection();
+        lp.fetchBrowserDetails("chrome");
     }
 
     @Test(priority = 8)

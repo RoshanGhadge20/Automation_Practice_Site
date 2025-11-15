@@ -262,21 +262,47 @@ public class landingpage {
     public void dynamicTableSection() {
 
         // Printing all the values from dynamic of table
-        /*
-         * for (WebElement webelement : dynamicTableHeadingField) {
-         * System.out.print(webelement.getText() + "\t");
-         * }
-         * System.out.println();
-         * 
-         * for (int i = 2; i < dynamicTableHeadingRowField.size(); i++) {
-         * List<WebElement> celldata =
-         * driver.findElements(By.xpath("//tbody[@id='rows']/tr[" + i + "]/td"));
-         * for (WebElement element : celldata) {
-         * System.out.print(element.getText() + "\t");
-         * }
-         * System.out.println();
-         * }
-         */
+        for (WebElement webelement : dynamicTableHeadingField) {
+            System.out.print(webelement.getText() + "\t");
+        }
+        System.out.println();
+        for (int i = 2; i < dynamicTableHeadingRowField.size(); i++) {
+            List<WebElement> celldata = driver.findElements(By.xpath("//tbody[@id='rows']/tr[" + i + "]/td"));
+            for (WebElement element : celldata) {
+                System.out.print(element.getText() + "\t");
+            }
+            System.out.println();
+        }
+    }
+
+    public void fetchBrowserDetails(String browsername) {
+        // Printing only specified of cell data
+        for (int i = 2; i < dynamicTableHeadingRowField.size(); i++) {
+            WebElement browsercolumnname = driver.findElement(By.xpath("//tbody[@id='rows']/tr[" + i + "]/td[1]"));
+
+            if (browsername.equalsIgnoreCase(browsercolumnname.getText())) {
+                // Fetch each column value
+                String cpu = driver.findElement(
+                        By.xpath("//tbody[@id='rows']/tr[" + i + "]/td[2]")).getText();
+
+                String memory = driver.findElement(
+                        By.xpath("//tbody[@id='rows']/tr[" + i + "]/td[3]")).getText();
+
+                String network = driver.findElement(
+                        By.xpath("//tbody[@id='rows']/tr[" + i + "]/td[4]")).getText();
+
+                String disk = driver.findElement(
+                        By.xpath("//tbody[@id='rows']/tr[" + i + "]/td[5]")).getText();
+
+                System.out.println("Browser: " + browsername);
+                System.out.println("CPU (%) : " + cpu);
+                System.out.println("Memory  : " + memory);
+                System.out.println("Network : " + network);
+                System.out.println("Disk    : " + disk);
+
+                break;
+            }
+        }
     }
 
     public void paginationWebTable() throws InterruptedException {
