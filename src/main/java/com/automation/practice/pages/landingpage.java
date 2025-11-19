@@ -174,6 +174,12 @@ public class landingpage {
     @FindBy(id = "Wikipedia1_wikipedia-search-results-header")
     WebElement searchResultText;
 
+    @FindBy(css = "div#Wikipedia1_wikipedia-search-results div a")
+    List<WebElement> searchResults;
+
+    @FindBy(css = "div#Wikipedia1_wikipedia-search-results")
+    WebElement NoResultFound;
+
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -372,9 +378,7 @@ public class landingpage {
     }
 
     public void footerSectionLinks() {
-
         System.out.println("Total Number of links in footer section are :- " + footerSectionLinksField.size());
-
         for (int i = 0; i < footerSectionLinksField.size(); i++) {
             String URL = footerSectionLinksField.get(i).getAttribute("href");
             System.out.println("URL" + i + URL);
@@ -385,7 +389,12 @@ public class landingpage {
         searchBoxField.sendKeys("Roshan Ghadge");
         searchButtonField.click();
         wait.until(ExpectedConditions.visibilityOf(searchResultText));
-        System.out.println("Search Resuls are appears");
-
+        if (searchResults.size() == 0) {
+            System.out.println(NoResultFound.getText());
+        } else if (searchResults.size() > 0) {
+            for (WebElement ele : searchResults) {
+                System.out.println(ele.getText());
+            }
+        }
     }
 }
