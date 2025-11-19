@@ -1,5 +1,6 @@
 package com.automation.practice.pages;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.automation.practice.utilities.DropdownElements;
@@ -24,6 +27,7 @@ public class landingpage {
     WorkingwithCalenderControls calenderControls;
     WindowHandleControl windowHandles;
     JavascriptExecutor js;
+    WebDriverWait wait;
 
     public landingpage(WebDriver driver) {
         this.driver = driver;
@@ -32,6 +36,7 @@ public class landingpage {
         calenderControls = new WorkingwithCalenderControls();
         windowHandles = new WindowHandleControl();
         js = (JavascriptExecutor) driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     /*---- Object Pool for storing all webelements of landing page ----*/
@@ -158,6 +163,16 @@ public class landingpage {
     // Footer Section Links
     @FindBy(css = "div#PageList1 div ul li a")
     List<WebElement> footerSectionLinksField;
+
+    // Tab Section
+    @FindBy(id = "Wikipedia1_wikipedia-search-input")
+    WebElement searchBoxField;
+
+    @FindBy(css = "input.wikipedia-search-button")
+    WebElement searchButtonField;
+
+    @FindBy(id = "Wikipedia1_wikipedia-search-results-header")
+    WebElement searchResultText;
 
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
@@ -364,5 +379,13 @@ public class landingpage {
             String URL = footerSectionLinksField.get(i).getAttribute("href");
             System.out.println("URL" + i + URL);
         }
+    }
+
+    public void tabSection() throws InterruptedException {
+        searchBoxField.sendKeys("Roshan Ghadge");
+        searchButtonField.click();
+        wait.until(ExpectedConditions.visibilityOf(searchResultText));
+        System.out.println("Search Resuls are appears");
+
     }
 }

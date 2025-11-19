@@ -85,4 +85,9 @@ public class landingpageTest extends BaseTest {
     public void verify_footerSectionLinks() {
         lp.footerSectionLinks();
     }
+
+    @Test(priority = 11)
+    public void verify_tabSection() throws InterruptedException {
+        lp.tabSection();
+    }
 }
