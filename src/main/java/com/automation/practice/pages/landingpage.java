@@ -183,6 +183,10 @@ public class landingpage {
     @FindBy(css = "div#Wikipedia1_wikipedia-search-more")
     WebElement moreSearchResultButton;
 
+    // Dyanamic Button Section 
+    @FindBy(xpath="//button[contains(text(),'ST')]")
+    WebElement startstopButton;
+
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -407,5 +411,20 @@ public class landingpage {
             windowHandles.getOnlyChildWindows(driver);
         }
         driver.switchTo().window(parent_win);
+    }
+
+    public void dynamicButtonSection() throws InterruptedException
+    {
+        if(startstopButton.getText().equalsIgnoreCase("Start"))
+        {
+            startstopButton.click();
+            Thread.sleep(2000);
+        }
+        else
+        {
+            startstopButton.click();
+            Thread.sleep(2000);
+        }
+
     }
 }
