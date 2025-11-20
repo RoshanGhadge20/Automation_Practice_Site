@@ -18,7 +18,12 @@ public class WindowHandleControl {
 
     public void switchToWindow(WebDriver driver, String switchwindow) {
         driver.switchTo().window(switchwindow);
+    }
 
+    public void getOnlyChildWindows(WebDriver driver) {
+        String parentWindow = driver.getWindowHandle();
+        Set<String> allWindows = driver.getWindowHandles();
+        allWindows.remove(parentWindow);
     }
 
 }

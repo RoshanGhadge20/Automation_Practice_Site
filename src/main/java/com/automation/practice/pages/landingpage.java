@@ -180,6 +180,9 @@ public class landingpage {
     @FindBy(css = "div#Wikipedia1_wikipedia-search-results")
     WebElement NoResultFound;
 
+    @FindBy(css = "div#Wikipedia1_wikipedia-search-more")
+    WebElement moreSearchResultButton;
+
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
         String paget_title = pageTitle.getText();
@@ -386,7 +389,7 @@ public class landingpage {
     }
 
     public void tabSection() throws InterruptedException {
-        searchBoxField.sendKeys("Roshan Ghadge");
+        searchBoxField.sendKeys("abcd");
         searchButtonField.click();
         wait.until(ExpectedConditions.visibilityOf(searchResultText));
         if (searchResults.size() == 0) {
@@ -396,5 +399,13 @@ public class landingpage {
                 System.out.println(ele.getText());
             }
         }
+        wait.until(ExpectedConditions.visibilityOf(moreSearchResultButton));
+        String parent_win = windowHandles.getParentWindow(driver);
+
+        if (moreSearchResultButton.isDisplayed()) {
+            moreSearchResultButton.click();
+            windowHandles.getOnlyChildWindows(driver);
+        }
+        driver.switchTo().window(parent_win);
     }
 }

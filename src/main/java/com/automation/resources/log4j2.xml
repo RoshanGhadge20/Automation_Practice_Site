@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="10" status="INFO">
+
+    <Appenders>
+
+        <!-- Console Appender -->
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} %-5level [%c{1}] - %msg%n"/>
+        </Console>
+
+        <!-- JSON Log File -->
+        <File name="MAIN" fileName="logs/main.log" append="true">
+            <JsonTemplateLayout eventTemplateUri="classpath:Log4jJsonTemplate.json"/>
+        </File>
+
+        <!-- Debug Log File -->
+        <File name="DEBUG_LOG" fileName="logs/debug.log" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %c - %msg%n"/>
+        </File>
+
+    </Appenders>
+
+    <Loggers>
+
+        <Root level="INFO">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="MAIN"/>
+        </Root>
+
+        <!-- Only debug logs for your automation code -->
+        <Logger name="com.automation.practice" level="DEBUG" additivity="false">
+            <AppenderRef ref="DEBUG_LOG"/>
+        </Logger>
+
+    </Loggers>
+
+</Configuration>
