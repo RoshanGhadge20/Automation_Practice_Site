@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import com.automation.practice.utilities.Alerts;
 import com.automation.practice.utilities.DropdownElements;
 import com.automation.practice.utilities.WindowHandleControl;
 import com.automation.practice.utilities.WorkingwithCalenderControls;
@@ -28,6 +29,7 @@ public class landingpage {
     WindowHandleControl windowHandles;
     JavascriptExecutor js;
     WebDriverWait wait;
+    Alerts alert;
 
     public landingpage(WebDriver driver) {
         this.driver = driver;
@@ -37,6 +39,7 @@ public class landingpage {
         windowHandles = new WindowHandleControl();
         js = (JavascriptExecutor) driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        alert = new Alerts();
     }
 
     /*---- Object Pool for storing all webelements of landing page ----*/
@@ -183,9 +186,19 @@ public class landingpage {
     @FindBy(css = "div#Wikipedia1_wikipedia-search-more")
     WebElement moreSearchResultButton;
 
-    // Dyanamic Button Section 
-    @FindBy(xpath="//button[contains(text(),'ST')]")
+    // Dyanamic Button Section
+    @FindBy(xpath = "//button[contains(text(),'ST')]")
     WebElement startstopButton;
+
+    // Alert & PopUp Section
+    @FindBy(xpath = "//button[text()='Simple Alert']")
+    WebElement simpleAlertButton;
+
+    @FindBy(xpath = "//button[text()='Confirmation Alert']")
+    WebElement confirmationAlertButton;
+
+    @FindBy(xpath = "//button[text()='Prompt Alert']")
+    WebElement promptAlertButton;
 
     /*---- Action Methods for landing page  ---*/
     public String verify_title() {
@@ -413,18 +426,36 @@ public class landingpage {
         driver.switchTo().window(parent_win);
     }
 
-    public void dynamicButtonSection() throws InterruptedException
-    {
-        if(startstopButton.getText().equalsIgnoreCase("Start"))
-        {
+    public void dynamicButtonSection() throws InterruptedException {
+        if (startstopButton.getText().equalsIgnoreCase("Start")) {
+            startstopButton.click();
+            Thread.sleep(2000);
+        } else {
             startstopButton.click();
             Thread.sleep(2000);
         }
-        else
-        {
-            startstopButton.click();
-            Thread.sleep(2000);
-        }
+    }
+
+    public void alertPopupSection() {
+        // Simple Alert > accept
+        simpleAlertButton.click();
+        System.out.println("Simple Alert Accept :- " + alert.getAlertMessage());
+        alert.acceptAlert();
+
+        // Simple Alert > dismiss
+        simpleAlertButton.click();
+        System.out.println("Simple Alert Dismiss :- " + alert.getAlertMessage());
+        alert.dismissAlert();
+
+        // Confirmation Alert
+        confirmationAlertButton.click();
+        System.out.println("Confirmation Alert Message :- " + alert.getAlertMessage());
+        alert.confirmationAlertAccept();
+
+        // Prompt Alerts
+        promptAlertButton.click();
+        System.out.println("Prompt Alert Messages :- " + alert.getAlertMessage());
+        alert.promptAlertAccept("Roshan Ghadge");
 
     }
 }

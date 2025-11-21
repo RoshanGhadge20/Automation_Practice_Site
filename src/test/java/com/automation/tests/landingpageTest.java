@@ -91,9 +91,13 @@ public class landingpageTest extends BaseTest {
         lp.tabSection();
     }
 
-    @Test(priority=12)
-    public void verify_dynamicButtonSection() throws InterruptedException
-    {
+    @Test(priority = 12)
+    public void verify_dynamicButtonSection() throws InterruptedException {
         lp.dynamicButtonSection();
+    }
+
+    @Test(priority = 13)
+    public void verify_alertPopupSection() {
+        lp.alertPopupSection();
     }
 }
